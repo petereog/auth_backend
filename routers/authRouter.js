@@ -6,6 +6,9 @@ const router = express.Router();
 router.post('/signup', controller.signup);
 router.post('/signin', controller.signin);
 router.post('/signout', controller.signout);
-router.post('/Signout', controller.signout);
+
+// Accept POST from client and call the correct exported handler
+router.post('/SendVerificationCode', controller.sendVerificationcode);
+
 
 module.exports = router;
