@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs")
+const { createHmac } = require('crypto');
 
 async function dohash(value, saltvalue) {
     return new Promise((resolve, reject) => {
@@ -13,4 +14,8 @@ function dohashValidation(value, hashed) {
     return bcrypt.compareSync(value, hashed);
 }
 
-module.exports = { dohash, dohashValidation };
+function hmacprocess(value, key) {
+    return createHmac('sha256', key).update(value).digest('hex');
+}
+
+module.exports = { dohash, dohashValidation, hmacprocess };
