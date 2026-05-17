@@ -109,7 +109,7 @@ exports.sendVerificationcode = async (req, res) => {
 
     return res.status(500).json({ success: false, message: 'Failed to send verification email' });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.error('Verification code send error:', error.message || error);
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 }
